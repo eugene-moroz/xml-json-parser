@@ -485,14 +485,11 @@ module.exports = function X2JS(config) {
         
         var parser=new DOMParser();
         var parsererrorNS = null;
-        // IE9+ now is here
-        if(!isIEParser) {
-            try {
-                parsererrorNS = parser.parseFromString("INVALID", "text/xml").childNodes[0].namespaceURI;
-            }
-            catch(err) {
-                parsererrorNS = null;
-            }
+        try {
+            parsererrorNS = parser.parseFromString("INVALID", "text/xml").childNodes[0].namespaceURI;
+        }
+        catch(err) {
+            parsererrorNS = null;
         }
         try {
             xmlDoc = parser.parseFromString( xmlDocStr, "text/xml" );
